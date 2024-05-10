@@ -124,7 +124,7 @@ const NewTodoForm = ({ noticeSnackbarStatus }) => {
     form.content.value = form.content.value.trim();
 
     if (form.content.value.length == 0) {
-      alert('할 일 써');
+      alert('할 일을 작성해주세요');
       form.content.focus();
       return;
     }
@@ -132,7 +132,7 @@ const NewTodoForm = ({ noticeSnackbarStatus }) => {
     const newTodoId = todosStatus.addTodo(form.content.value);
     form.content.value = '';
     form.content.focus();
-    noticeSnackbarStatus.open(`${newTodoId}번 todo 추가됨`);
+    noticeSnackbarStatus.open(`${newTodoId}번 todo가 추가됐습니다`);
   };
 
   return (
@@ -144,7 +144,7 @@ const NewTodoForm = ({ noticeSnackbarStatus }) => {
           multiline
           name="content"
           autoComplete="off"
-          label="할 일 써"
+          label="할 일을 작성해주세요"
         />
         <Button variant="contained" className="tw-font-bold" type="submit">
           추가
@@ -245,7 +245,7 @@ function EditTodoModal({ status, todo, noticeSnackbarStatus }) {
     form.content.value = form.content.value.trim();
 
     if (form.content.value.length == 0) {
-      alert('할 일 써');
+      alert('할 일을 작성해주세요');
       form.content.focus();
       return;
     }
@@ -254,7 +254,7 @@ function EditTodoModal({ status, todo, noticeSnackbarStatus }) {
     todosStatus.modifyTodo(todo.id, form.content.value);
     status.close();
 
-    noticeSnackbarStatus.open(`${todo.id}번 todo 수정됨`);
+    noticeSnackbarStatus.open(`${todo.id}번 todo가 수정됐습니다`);
 
     // modify v2
     // todosStatus.modifyTodoById(todo.id, form.content.value);
@@ -275,7 +275,7 @@ function EditTodoModal({ status, todo, noticeSnackbarStatus }) {
               name="content"
               autoComplete="off"
               variant="outlined"
-              label="할 일 써"
+              label="할 일을 작성해주세요"
               defaultValue={todo?.content}
             />
             <Button variant="contained" className="tw-font-bold" type="submit">
@@ -298,7 +298,7 @@ function TodoOptionDrawer({ status, noticeSnackbarStatus }) {
 
     todosStatus.removeTodo(status.todoId);
     status.close();
-    noticeSnackbarStatus.open(`${status.todoId}번 todo 삭제됨`, 'error');
+    noticeSnackbarStatus.open(`${status.todoId}번 todo가 삭제됐습니다`, 'error');
   };
 
   const editTodoModalStatus = useEditTodoModalStatus();
@@ -418,9 +418,9 @@ function App() {
   const noticeSnackbarStatus = useNoticeSnackbarStatus();
 
   React.useEffect(() => {
-    todosStatus.addTodo('스쿼트\n런지');
-    todosStatus.addTodo('벤치');
-    todosStatus.addTodo('데드');
+    todosStatus.addTodo('자소서\n포트폴리오');
+    todosStatus.addTodo('개인프로젝트');
+    todosStatus.addTodo('팀프로젝트');
   }, []);
 
   return (
@@ -432,7 +432,7 @@ function App() {
           </div>
           <div className="logo-box">
             <a href="/" className="tw-font-bold">
-              TODO!
+              My TODO List!
             </a>
           </div>
           <div className="tw-flex-1 tw-flex tw-justify-end">
